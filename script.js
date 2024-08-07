@@ -13,12 +13,20 @@ const imagenes = [];
 const inputLink = document.querySelector(".inputLink");
 const inputTitulo = document.querySelector|(".inputTitulo");
 const galeria = document.querySelector(".galeria")
+const botonAgregarImagen = document.querySelector(".agregarImagen");
 
 const agregarImagen = ()=>{
     imagenes.push(new Imagen(inputTitulo.value, inputImagen.value));
+
     let div = document.createElement("DIV");
     div.innerHTML= `<img class="imagen" src="${inputImagen.value}" alt="">
     <h3 class="tituloImagen imagen">${inputTitulo.value}</h3>
     <button class="boton">Eliminar</button>
     <button class="boton">Ver detalles</button>`
+
+    galeria.appendChild(div);
 }
+
+botonAgregarImagen.addEventListener("click", ()=>{
+    agregarImagen();
+})
