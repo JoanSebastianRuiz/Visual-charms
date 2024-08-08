@@ -27,11 +27,10 @@ const agregarImagen = ()=>{
     <h3 class="tituloImagen imagen">${inputTitulo.value}</h3>
     <div>
     <button class="boton eliminarImagen" onclick="eliminarImagen(this)">Eliminar</button>
-    <button class="boton" onclick="desplegarDetalles(imagen${imagen.id})">Ver detalles</button>
+    <button class="boton" onclick="desplegarDetalles(this.parentNode)">Ver detalles</button>
     </div>`
 
     galeria.appendChild(div);
-    localStorage.setItem("imagenes", JSON.stringify(imagenes));
 }
 
 const eliminarImagen = (elemento) =>{
@@ -41,16 +40,31 @@ const eliminarImagen = (elemento) =>{
 
 }
 
-const desplegarDetalles = (imagen) => {
-    const padre = imagen.parentNode;
+const desplegarDetalles = (padre) => {
+    let padre2=padre.parentNode;
+    console.log(padre2)
+    console.log("hola")
+
     let div = document.createElement("DIV");
+    div.classList.add("desplegarDetalles");
+    let imagenDetalle = padre2.getElementsByTagName("IMG")[0];
+    imagenDetalle.classList.toggle("imagen", false);
+    imagenDetalle.classList.add("imagenDetalle");
     
-    div.innerHTML =`${imagen.outerHTML}
-    <p><b>Link: </b>${imagen.getAttribute("src")}</p>`;
-    padre.appendChild(div);
+    div.innerHTML =`${imagenDetalle.outerHTML}
+    <p><b>Link: </b>${imagenDetalle.getAttribute("src")}</p>
+    <button class="boton salir" onclick="salirDetalles(this)">Salir</button>`;
+    padre2.appendChild(div);
+}
+
+const salirDetalles = (elemento) => {
+    let padre = elemento.parentNode;
+    padre.setAttribute("style",'display:none');
 }
 
 botonAgregarImagen.addEventListener("click", ()=>{
     agregarImagen();
+    inputLink.value="";
+    inputTitulo.value=""
 })
 

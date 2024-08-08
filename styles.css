@@ -103,3 +103,21 @@ label{
 .galeria{
     padding-bottom: 2rem;
 }
+
+.desplegarDetalles{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.607);
+    color: var(--colorTexto);
+}
+
+.imagenDetalle{
+    width: 40%;
+    height: auto;
+    border-radius: 0.2rem;
+}
