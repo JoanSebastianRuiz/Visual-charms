@@ -21,11 +21,14 @@ const agregarImagen = ()=>{
     imagenes.push(imagen);
 
     let div = document.createElement("DIV");
+    div.classList.add("contenedorImagen");
     
     div.innerHTML = `<img class="imagen" id="imagen${imagen.id}" src="${inputLink.value}" alt="">
     <h3 class="tituloImagen imagen">${inputTitulo.value}</h3>
+    <div>
     <button class="boton eliminarImagen" onclick="eliminarImagen(this)">Eliminar</button>
-    <button class="boton" onclick="desplegarDetalles(imagen${imagen.id})">Ver detalles</button>`
+    <button class="boton" onclick="desplegarDetalles(imagen${imagen.id})">Ver detalles</button>
+    </div>`
 
     galeria.appendChild(div);
     localStorage.setItem("imagenes", JSON.stringify(imagenes));
@@ -33,14 +36,17 @@ const agregarImagen = ()=>{
 
 const eliminarImagen = (elemento) =>{
     const padre = elemento.parentNode;
-    padre.remove();
+    const padre2 = padre.parentNode;
+    padre2.remove();
 
 }
 
 const desplegarDetalles = (imagen) => {
     const padre = imagen.parentNode;
     let div = document.createElement("DIV");
-    div.innerHTML =`<p><b>Link: </b>${imagen.getAttribute("src")}</p>`;
+    
+    div.innerHTML =`${imagen.outerHTML}
+    <p><b>Link: </b>${imagen.getAttribute("src")}</p>`;
     padre.appendChild(div);
 }
 
