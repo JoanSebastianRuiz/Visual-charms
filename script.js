@@ -1,3 +1,4 @@
+//Creacion de clase imagen
 class Imagen{
     static cont=0
     constructor(titulo, link){
@@ -10,12 +11,13 @@ class Imagen{
 
 const imagenes = [];
 
+//Seleccion de nodos del HTML
 const inputLink = document.querySelector(".inputLink");
 const inputTitulo = document.querySelector(".inputTitulo");
 const galeria = document.querySelector(".galeria")
 const botonAgregarImagen = document.querySelector(".agregarImagen");
-const botonEliminarImagen = document.querySelector(".eliminarImagen")
 
+//Funcion que permite agregar una imagen a la galeria
 const agregarImagen = ()=>{
     let imagen =new Imagen(inputTitulo.value, inputLink.value);
     imagenes.push(imagen);
@@ -34,6 +36,7 @@ const agregarImagen = ()=>{
     galeria.appendChild(div);
 }
 
+//Funcion que permite eliminar una imagen a la galeria
 const eliminarImagen = (elemento) =>{
     const padre = elemento.parentNode;
     const padre2 = padre.parentNode;
@@ -44,10 +47,9 @@ const eliminarImagen = (elemento) =>{
     },1001);
 }
 
+//Funcion que permite visualizar los detalles de una imagen de la galeria
 const desplegarDetalles = (padre) => {
     let padre2=padre.parentNode;
-    console.log(padre2)
-    console.log("hola")
 
     let div = document.createElement("DIV");
     div.classList.add("desplegarDetalles");
@@ -58,14 +60,16 @@ const desplegarDetalles = (padre) => {
     div.innerHTML =`${imagenDetalle.outerHTML}
     <p><b>Link: </b>${imagenDetalle.getAttribute("src")}</p>
     <button class="boton salir" onclick="salirDetalles(this)">Salir</button>`;
-    padre2.appendChild(div);
+    document.body.appendChild(div);
 }
 
+//Funcion que permite salir de los detalles de una imagen de la galeria
 const salirDetalles = (elemento) => {
     let padre = elemento.parentNode;
     padre.setAttribute("style",'display:none');
 }
 
+//Adicion de evento al boton agregar imagen
 botonAgregarImagen.addEventListener("click", ()=>{
     agregarImagen();
     inputLink.value="";
