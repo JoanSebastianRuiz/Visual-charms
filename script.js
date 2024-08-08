@@ -22,6 +22,7 @@ const agregarImagen = ()=>{
 
     let div = document.createElement("DIV");
     div.classList.add("contenedorImagen");
+    div.classList.add("contenedoragregado");
     
     div.innerHTML = `<img class="imagen" id="imagen${imagen.id}" src="${inputLink.value}" alt="">
     <h3 class="tituloImagen imagen">${inputTitulo.value}</h3>
@@ -36,8 +37,11 @@ const agregarImagen = ()=>{
 const eliminarImagen = (elemento) =>{
     const padre = elemento.parentNode;
     const padre2 = padre.parentNode;
-    padre2.remove();
-
+    padre2.classList.remove("contenedoragregado")
+    padre2.classList.add("contenedorEliminado");
+    setTimeout(()=>{
+        padre2.remove();
+    },1001);
 }
 
 const desplegarDetalles = (padre) => {
