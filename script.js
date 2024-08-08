@@ -53,8 +53,8 @@ const desplegarDetalles = (padre) => {
 
     let div = document.createElement("DIV");
     div.classList.add("desplegarDetalles");
-    let imagenDetalle = padre2.getElementsByTagName("IMG")[0];
-    imagenDetalle.classList.toggle("imagen", false);
+    let imagenDetalle = document.createElement("IMG");
+    imagenDetalle.setAttribute("src",padre2.getElementsByTagName("IMG")[0].getAttribute("src"));
     imagenDetalle.classList.add("imagenDetalle");
     
     div.innerHTML =`${imagenDetalle.outerHTML}
